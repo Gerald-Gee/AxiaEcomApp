@@ -1,4 +1,3 @@
-// routes/uploadFileRouter.js
 import { Router } from 'express';
 import upload from '../middlewares/fileUploadMiddleware.js';
 

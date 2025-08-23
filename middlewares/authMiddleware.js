@@ -2,8 +2,7 @@ import jwt from 'jsonwebtoken';
 import User from '../schemas/userSchema.js';
 
 const authMiddleware = async (req, res, next) => {
-  // req.user = {id:"dummy", admin:true } 
-  //   next()
+  
   const accessToken = req.cookies.token;
   const jwtSecret = process.env.JWT_SECRET;
 
