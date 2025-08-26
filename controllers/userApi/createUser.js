@@ -1,6 +1,8 @@
 import bcrypt from 'bcryptjs';
 import User from '../../schemas/userSchema.js';
-// import { generateOTP, sendMail } from '../../utils/sendEmail.js';
+import { sendMail } from '../../utils/sendEmail.js';
+
+//generateOTP,
 
 
 export const createUser = async (req, res) => {
@@ -26,7 +28,8 @@ export const createUser = async (req, res) => {
       newUser = new User({
         ...req.body,
         password: hashedPassword,
-        admin: true
+        admin: true,
+        AltimatAdmin: true,
       });
     } else {
       newUser = new User({
@@ -35,28 +38,30 @@ export const createUser = async (req, res) => {
         admin: false,
     //     otp,
     //     otpExpires,
-    //     AltimatAdmin: false,
+        AltimatAdmin: false,
         profile: { country: '', Number: '', Street: '', Bio: '' }
       });
     }
 
     await newUser.save();
 
-    // try {
-    //   const mailObj = {
-    //     mailFrom: `Ecommm ${process.env.EMAIL_USER}`,
-    //     mailTo: email,
-    //     subject: 'Account Created!',
-    //     body: `
-    //       <h1>WELCOME TO ECOMMM <strong>${username}</strong></h1>
-    //       <p>Here is your OTP ${otp}, proceed to verify!</p>
-    //       <p>Make a post and have a great experience using Ecommm</p>
-    //     `
-    //   };
-    //   await sendMail(mailObj);
-    // } catch (mailError) {
-    //   console.log("Email sending failed:", mailError);
-    // }
+    try {
+      const mailObj = {
+        mailFrom: `Ecomproject ${process.env.EMAIL_USER}`,
+        mailTo: email,
+        subject: 'AxiaEcomProject',
+        body: `
+          <h1>WELCOME TO AxiaEcomProject <strong>${username}</strong></h1>
+          <p>Here is your OTP  proceed to verify!</p>
+          <p>Make a post and have a great experience using Ecommm</p>
+        `
+      };
+      //${otp},
+
+      await sendMail(mailObj);
+    } catch (mailError) {
+      console.log("Email sending failed:", mailError);
+    }
 
     res.status(201).json({ message: 'New User created successfully' });
 

@@ -1,15 +1,14 @@
-// utils/sendEmail.js
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
-/**
- * Send email using Nodemailer
- * @param {Object} param0
- * @param {string} param0.mailFrom - Sender email
- * @param {string} param0.mailTo - Recipient email
- * @param {string} param0.subject - Email subject
- * @param {string} param0.body - Email HTML body
- */
+// /**
+//  * Send email using Nodemailer
+//  * @param {Object} param0
+//  * @param {string} param0.mailFrom - Sender email
+//  * @param {string} param0.mailTo - Recipient email
+//  * @param {string} param0.subject - Email subject
+//  * @param {string} param0.body - Email HTML body
+//  */
 export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
   try {
     const transporter = nodemailer.createTransport({
@@ -36,14 +35,14 @@ export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
   }
 };
 
-/**
- * Generate OTP, expiry, and token
- * @returns {Object} { otp, otpExpires, token }
- */
-export const generateOTP = () => {
-  return {
-    otp: Math.floor(100000 + Math.random() * 900000).toString(),
-    otpExpires: new Date(Date.now() + 20 * 60 * 1000), // 20 min
-    token: crypto.randomBytes(32).toString('hex')
-  };
-};
+// /**
+//  * Generate OTP, expiry, and token
+//  * @returns {Object} { otp, otpExpires, token }
+//  */
+// export const generateOTP = () => {
+//   return {
+//     otp: Math.floor(100000 + Math.random() * 900000).toString(),
+//     otpExpires: new Date(Date.now() + 20 * 60 * 1000), // 20 min
+//     token: crypto.randomBytes(32).toString('hex')
+//   };
+// };
