@@ -1,7 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-// import cors from 'cors';
+import cors from 'cors';
 
 import connectDb from './connectDb/mongodb.js';
 // import { startCleanUp } from './cronJobs/startCleanUp.js';
@@ -25,7 +25,7 @@ const app = express();
 // startCleanUp();
 
 // Middleware
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
