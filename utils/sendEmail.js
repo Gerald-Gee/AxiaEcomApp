@@ -17,7 +17,7 @@ export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        pass: process.env.EMAIL_PASS,
       }
     });
 
@@ -35,14 +35,14 @@ export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
   }
 };
 
-// /**
-//  * Generate OTP, expiry, and token
-//  * @returns {Object} { otp, otpExpires, token }
-//  */
-// export const generateOTP = () => {
-//   return {
-//     otp: Math.floor(100000 + Math.random() * 900000).toString(),
-//     otpExpires: new Date(Date.now() + 20 * 60 * 1000), // 20 min
-//     token: crypto.randomBytes(32).toString('hex')
-//   };
-// };
+/**
+ * Generate OTP, expiry, and token
+ * @returns {Object} { otp, otpExpires, token }
+ */
+export const generateOTP = () => {
+  return {
+    otp: Math.floor(100000 + Math.random() * 900000).toString(),
+    otpExpires: new Date(Date.now() + 20 * 60 * 1000), // 20 min
+    token: crypto.randomBytes(32).toString('hex')
+  };
+};

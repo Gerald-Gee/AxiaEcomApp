@@ -14,12 +14,12 @@ const userSchema = new mongoose.Schema(
       Street: { type: String, default: '' },
       Bio: { type: String, default: '' }
     },
-    // otp: String,
-    // otpExpires: Date,
-    // isVerified: { type: Boolean, default: false },
-    // lastOtpSentAt: Date,
-    // passwordResetToken: String,
-    // passwordResetExpires: Date
+    otp: String,
+    otpExpires: Date,
+    isVerified: { type: Boolean, default: false },
+    lastOtpSentAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date
   },
   { timestamps: true }
 );

@@ -1,8 +1,7 @@
 import bcrypt from 'bcryptjs';
 import User from '../../schemas/userSchema.js';
-import { sendMail } from '../../utils/sendEmail.js';
+import { generateOTP, sendMail  } from '../../utils/sendEmail.js';
 
-//generateOTP,
 
 
 export const createUser = async (req, res) => {
@@ -19,7 +18,7 @@ export const createUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // const { otp, otpExpires } = generateOTP();
+    const { otp, otpExpires } = generateOTP();
     const hashedPassword = await bcrypt.hash(password, 10);
 
     let newUser;
@@ -36,8 +35,8 @@ export const createUser = async (req, res) => {
         ...req.body,
         password: hashedPassword,
         admin: false,
-    //     otp,
-    //     otpExpires,
+        otp,
+        otpExpires,
         AltimatAdmin: false,
         profile: { country: '', Number: '', Street: '', Bio: '' }
       });
@@ -52,11 +51,10 @@ export const createUser = async (req, res) => {
         subject: 'AxiaEcomProject',
         body: `
           <h1>WELCOME TO AxiaEcomProject <strong>${username}</strong></h1>
-          <p>Here is your OTP  proceed to verify!</p>
+          <p>Here is your OTP ${otp} proceed to verify!</p>
           <p>Make a post and have a great experience using Ecommm</p>
         `
       };
-      //${otp},
 
       await sendMail(mailObj);
     } catch (mailError) {

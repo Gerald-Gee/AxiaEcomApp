@@ -12,8 +12,8 @@ import authRouter from './routes/authRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import cartRouter from './routes/cartRoutes.js';
 import uploadFileRouter from './routes/uploadFileRouter.js';
-// import otpRouter from './routes/otpRoutes.js';
-// import allApis from './routes/allApis.js';
+import otpRouter from './routes/otpRoutes.js';
+import allApis from './routes/allApis.js';
 
 dotenv.config();
 
@@ -36,19 +36,17 @@ app.use('/api', authRouter);
 app.use('/api', productRouter);
 app.use('/api', cartRouter);
 app.use('/api', uploadFileRouter);
-// app.use('/api/otp', otpRouter);
-// app.use('/', allApis);
+app.use('/api/otp', otpRouter);
+app.use('/', allApis);
 
 // Default route
 app.get('/', (req, res) => {
-  res.send()
+  
   res.status(200).json({ message: 'E-commerce API is running' });
-  console.log("app is running")
 });
 
 // Request logger
 app.use((req, res, next) => {
-  console.log("logger is working");
   console.log(`${req.method} ${req.url}`);
   next();
 });

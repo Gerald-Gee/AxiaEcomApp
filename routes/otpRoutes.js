@@ -1,5 +1,4 @@
-// routes/otpRoutes.js
-import { Router } from 'express';
+import  Router  from 'express';
 import { verifyOTP, resendOTP } from '../controllers/otpApis/verifyOtp.js';
 
 const otpRouter = Router();
