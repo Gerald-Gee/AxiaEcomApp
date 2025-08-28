@@ -1,6 +1,5 @@
 import User from "../../schemas/userSchema.js";
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { generateOTP, sendMail } from '../../utils/sendEmail.js';
 import getToken from '../../jwt/genToken.js';
 
@@ -36,7 +35,7 @@ export const loggingIn = async (req, res) => {
     res
       .cookie('token', token, { httpOnly: true, sameSite: 'strict' })
       .status(200)
-      .json({ message: "Login Successful", token });
+      .json({ message: "Login Successful" });
 
   } catch (error) {
     res.status(500).json(error);

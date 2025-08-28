@@ -1,13 +1,12 @@
-// cronJobs/startCleanUp.js
 import User from '../schemas/userSchema.js';
 import { scheduleCron } from '../utils/cron.js';
 import { sendMail } from '../utils/sendEmail.js';
 
-/**
- * Deletes unverified users after a set period
- */
+
+// Deletes unverified users after a set period
+
 export const startCleanUp = () => {
-  scheduleCron('* * * * *', async () => {
+  scheduleCron('10 * * * *', async () => {
     console.log('Running cleanup: removing unverified users...');
     const lastSixHours = new Date(Date.now() - 6 * 60 * 60 * 1000);
 
@@ -23,9 +22,8 @@ export const startCleanUp = () => {
   });
 };
 
-/**
- * Sends reminder emails to unverified users
- */
+//Sends reminder emails to unverified users
+ 
 export const sendMailReminder = () => {
   scheduleCron('0 0 * * *', async () => {
     console.log('Running reminder email job...');
@@ -43,9 +41,9 @@ export const sendMailReminder = () => {
           mailTo: user.email,
           subject: 'Verify your account',
           body: `
-            <h1>Welcome to Ecommm, <strong>${user.username}</strong></h1>
+            <h1>Welcome to AxiaEcomProject, <strong>${user.username}</strong></h1>
             <p>Please verify your account by clicking the link below:</p>
-            <a href="http://localhost:3000/api/otp/verify?otp=${user.otp}">Verify</a>
+            <a href="http://localhost:5000/api/otp/verify?otp=${user.otp}">Verify</a>
           `
         };
         await sendMail(mailObj);

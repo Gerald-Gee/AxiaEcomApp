@@ -2,14 +2,10 @@ import Product from '../../schemas/productSchema.js';
 
 // CREATE PRODUCT
 export const createProduct = async (req, res) => {
-  const { name, price, color, size, 
-    // category, imgUrl 
-
-  } = req.body;
+  const { name, price, color, size, category, imgUrl } = req.body;
   const user = req.user;
 
-  if (!name || !price || !color || !size 
-    // || !category || !imgUrl
+  if (!name || !price || !color || !size || !category || !imgUrl
 
   ) {
     return res.status(400).json({ message: "Please provide all required fields" });
@@ -39,13 +35,11 @@ export const getAllProducts = async (req, res) => {
 
 // GET PRODUCTS BY QUERY PARAMS
 export const getByqueryParams = async (req, res) => {
-  const { name, 
-    // category, 
-    color, price } = req.query;
+  const { name, category, color, price } = req.query;
   const filter = {};
 
   if (name) filter.name = new RegExp(name, 'i');
-  // if (category) filter.category = category;
+  if (category) filter.category = category;
   if (price) filter.price = price;
   if (color) filter.color = color;
 
@@ -60,9 +54,7 @@ export const getByqueryParams = async (req, res) => {
 // EDIT PRODUCT
 export const editProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, price, color, size, 
-    // category, imgUrl 
-  } = req.body;
+  const { name, price, color, size, category, imgUrl } = req.body;
   const reqId = req.user._id;
 
   try {
@@ -75,8 +67,8 @@ export const editProduct = async (req, res) => {
     product.price = price ?? product.price;
     product.color = color ?? product.color;
     product.size = size ?? product.size;
-    // product.category = category ?? product.category;
-    // product.imgUrl = imgUrl ?? product.imgUrl;
+    product.category = category ?? product.category;
+    product.imgUrl = imgUrl ?? product.imgUrl;
 
     await product.save();
     res.status(200).json({ message: 'Product updated successfully' });

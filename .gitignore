@@ -1,14 +1,4 @@
 node_modules
 .env
 
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Uploads
-uploads/
-
-# Build outputs
-dist/
-build/
+uploads

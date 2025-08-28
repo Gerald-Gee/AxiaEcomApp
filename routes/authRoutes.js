@@ -1,5 +1,4 @@
-// routes/authRoutes.js
-import { Router } from 'express';
+import Router from 'express';
 import {
   loggingIn,
   passwordResetRequest,

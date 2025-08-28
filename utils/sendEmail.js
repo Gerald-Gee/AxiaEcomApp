@@ -1,14 +1,7 @@
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
-// /**
-//  * Send email using Nodemailer
-//  * @param {Object} param0
-//  * @param {string} param0.mailFrom - Sender email
-//  * @param {string} param0.mailTo - Recipient email
-//  * @param {string} param0.subject - Email subject
-//  * @param {string} param0.body - Email HTML body
-//  */
+
 export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
   try {
     const transporter = nodemailer.createTransport({

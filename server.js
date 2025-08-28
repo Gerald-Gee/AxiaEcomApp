@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import connectDb from './connectDb/mongodb.js';
-// import { startCleanUp } from './cronJobs/startCleanUp.js';
+import { startCleanUp } from './cronJobs/startCleanUp.js';
 
 // Routes
 import userRouter from './routes/userRoutes.js';
@@ -21,8 +21,7 @@ connectDb();
 
 const app = express();
 
-// Start cleanup job
-// startCleanUp();
+startCleanUp();
 
 // Middleware
 app.use(cors());

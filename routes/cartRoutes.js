@@ -1,5 +1,4 @@
-// routes/cartRoutes.js
-import { Router } from 'express';
+import Router from 'express';
 import {
   createCartItem,
   getCartItems,
